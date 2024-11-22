@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: APIGateway
+  cloud:
+    gateway:
+      routes:
+        - id: ProductMS
+          uri: lb://ProductMS
+          predicates:
+            - Path=/products/**
+        - id: UserMS
+          uri: lb://UserMS
+          predicates:
+            - Path=/users/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
